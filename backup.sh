@@ -10,6 +10,7 @@ function main {
   mkdir -p "$cache_dir"
 
   sudo service docker stop
+  sudo du -sh /var/lib/docker
   sudo /bin/tar -cz -f "$cache_tar" -C /var/lib/docker .
   sudo chown "$me:$me" "$cache_tar"
   sudo service docker start
