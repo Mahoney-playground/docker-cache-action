@@ -2,3 +2,4 @@
 Dockerfile
 .idea
 **/.DS_Store
+.github

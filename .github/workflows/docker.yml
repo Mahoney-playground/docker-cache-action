@@ -21,7 +21,10 @@ jobs:
         cache-name: mahoney-playground-docker-cache-action-cache-docker-3
       with:
         path: ~/docker_cache
-        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        key: ${{ env.cache-name }}-${{ github.ref }}-${{ github.run_number }}
+        restore-keys: |
+          ${{ env.cache-name }}-${{ github.ref }}-
+          ${{ env.cache-name }}-
 
     - name: Restore docker
       run: ./restore.sh
