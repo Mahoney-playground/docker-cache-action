@@ -3,7 +3,7 @@
 set -exuo pipefail
 
 function main() {
-  local cache_tar="/tmp/docker_cache/cache.tgz"
+  local cache_tar=~/docker_cache/cache.tgz
 
   if [[ -f "$cache_tar" ]]; then
     sudo service docker stop
