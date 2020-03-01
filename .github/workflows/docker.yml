@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on: [push]
+
+env:
+  DOCKER_REPO: mahoney-playground/docker-cache-action
+  COMPOSE_DOCKER_CLI_BUILD: 1
+  DOCKER_BUILDKIT: 1
+  BUILDKIT_PROGRESS: plain
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache docker
+      uses: actions/cache@v1
+      env:
+        cache-name: mahoney-playground-docker-cache-action-cache-docker-2
+      with:
+        path: ~/docker_cache
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+
+    - name: Restore docker
+      run: ./restore.sh
+      shell: bash
+
+    - name: Build App with Docker
+      run: docker build . -t docker-cache-action-app:${GITHUB_SHA}
+      shell: bash
+
+    - name: Backup docker
+      run: ./backup.sh
+      shell: bash
