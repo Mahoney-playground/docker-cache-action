@@ -11,6 +11,8 @@ function main() {
     sudo mkdir -p /var/lib/docker
     sudo tar -zxf "$cache_tar" -C /var/lib/docker
     sudo service docker start
+  else
+    docker system prune -a -f --volumes
   fi
 }
 

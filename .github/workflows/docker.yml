@@ -18,7 +18,7 @@ jobs:
     - name: Cache docker
       uses: actions/cache@v1
       env:
-        cache-name: mahoney-playground-docker-cache-action-cache-docker-3
+        cache-name: mahoney-playground-docker-cache-action-cache-docker-4
       with:
         path: ~/docker_cache
         key: ${{ env.cache-name }}-${{ github.ref }}-${{ github.run_number }}
