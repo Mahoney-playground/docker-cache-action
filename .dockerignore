@@ -1,5 +1,5 @@
 /.git/
 Dockerfile
-.idea
+/.idea/
 **/.DS_Store
-.github
+/.github/
