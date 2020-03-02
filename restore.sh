@@ -8,7 +8,8 @@ function main() {
   if [[ -f "$cache_tar" ]]; then
     ls -lh "$cache_tar"
     time sudo service docker stop
-    time sudo rm -rf /var/lib/docker
+    ls -lA "$(command -v rm)"
+    time sudo /bin/rm -rf /var/lib/docker
     sudo mkdir -p /var/lib/docker
     time sudo tar -xf "$cache_tar" -C /var/lib/docker
     time sudo service docker start
