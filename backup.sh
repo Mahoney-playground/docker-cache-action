@@ -13,7 +13,6 @@ function main {
   time sudo service docker stop
   time sudo /bin/tar -c -f "$cache_tar" -C /var/lib/docker .
   sudo chown "$me:$me" "$cache_tar"
-  time sudo service docker start
   ls -lh "$cache_tar"
 }
 
