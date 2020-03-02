@@ -4,6 +4,7 @@ set -exuo pipefail
 
 function main() {
   local cache_tar=~/docker_cache/cache.tar
+  sudo mount
 
   if [[ -f "$cache_tar" ]]; then
     ls -lh "$cache_tar"
