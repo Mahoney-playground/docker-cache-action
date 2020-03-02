@@ -30,7 +30,7 @@ jobs:
           ${{ env.cache-name }}-
 
     - name: Restore docker
-      run: ./.github/restore.sh {{ github.event_name }}
+      run: ./.github/restore.sh ${{ github.event_name }}
       shell: bash
 
     - name: Build App with Docker
