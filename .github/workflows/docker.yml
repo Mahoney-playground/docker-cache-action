@@ -1,9 +1,10 @@
 name: Docker Image CI
 
-on: [push, schedule]
+on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '*/5 * * * *'
+  push:
 
 env:
   DOCKER_REPO: mahoney-playground/docker-cache-action
