@@ -3,7 +3,10 @@
 set -exuo pipefail
 
 function main() {
-  local cache_tar=~/docker_cache/cache.tar
+  local event_name=$1
+  local cache_tar=/tmp/docker_cache/cache.tar
+
+  echo "Event name: [$event_name]"
 
   if [[ -f "$cache_tar" ]]; then
     ls -lh "$cache_tar"
