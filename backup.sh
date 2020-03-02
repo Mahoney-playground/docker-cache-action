@@ -10,10 +10,11 @@ function main {
   mkdir -p "$cache_dir"
   rm -f "$cache_tar"
 
-  sudo service docker stop
-  sudo /bin/tar -c -f "$cache_tar" -C /var/lib/docker .
+  time sudo service docker stop
+  time sudo /bin/tar -c -f "$cache_tar" -C /var/lib/docker .
   sudo chown "$me:$me" "$cache_tar"
-  sudo service docker start
+  time sudo service docker start
+  ls -lh "$cache_tar"
 }
 
 main "$@"
