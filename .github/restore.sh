@@ -8,7 +8,7 @@ function main() {
 
   echo "Event name: [$event_name]"
 
-  if [[ -f "$cache_tar" ]] && [[ $event_name != schedule ]]; then
+  if [[ -f "$cache_tar" && $event_name != schedule ]]; then
     ls -lh "$cache_tar"
     time sudo service docker stop
     time sudo mv /var/lib/docker /tmp/olddocker
