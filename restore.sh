@@ -10,7 +10,7 @@ function main() {
     time sudo service docker stop
     local empty_dir
     empty_dir=$(mktemp -d)
-    time sudo rsync -a --delete "$empty_dir" /var/lib/docker/
+    time sudo rsync -a --delete "$empty_dir/" /var/lib/docker/
     time sudo tar -xf "$cache_tar" -C /var/lib/docker
     time sudo service docker start
   else
