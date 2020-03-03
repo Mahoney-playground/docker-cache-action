@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
 set -exuo pipefail
+# shellcheck source=timing.sh
+. "${BASH_SOURCE%/*}/timing.sh"
 
 function main() {
   local cache_tar=$1
 
   if [[ -f "$cache_tar" ]]; then
     ls -lh "$cache_tar"
-    command time -f "Took %E" sudo service docker stop
+    timing sudo service docker stop
     # mv is c. 25 seconds faster than rm -rf here
-    command time -f "Took %E" sudo mv /var/lib/docker "$(mktemp -d --dry-run)"
+    timing sudo mv /var/lib/docker "$(mktemp -d --dry-run)"
     sudo mkdir -p /var/lib/docker
-    command time -f "Took %E" sudo tar -xf "$cache_tar" -C /var/lib/docker
-    command time -f "Took %E" sudo service docker start
+    timing sudo tar -xf "$cache_tar" -C /var/lib/docker
+    timing sudo service docker start
   else
     # Slim docker down - comes with 3GB of data we don't want to backup
     docker system prune -a -f --volumes
