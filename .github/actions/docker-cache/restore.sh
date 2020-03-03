@@ -4,9 +4,8 @@ set -exuo pipefail
 
 function main() {
   local cache_tar=$1
-  local use_backup=$2
 
-  if [[ -f "$cache_tar" && "$use_backup" == true ]]; then
+  if [[ -f "$cache_tar" ]]; then
     ls -lh "$cache_tar"
     time sudo service docker stop
     # mv is c. 25 seconds faster than rm -rf here

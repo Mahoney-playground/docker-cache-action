@@ -21,6 +21,7 @@ jobs:
 
     - name: Cache docker
       uses: actions/cache@v1
+      if: github.event_name != 'schedule'
       env:
         cache-name: docker-cache-1
       with:
@@ -30,10 +31,10 @@ jobs:
           ${{ env.cache-name }}-
 
     - name: Restore docker
-      run: ./.github/restore.sh ${{ runner.temp }}/docker_cache/cache.tar ${{ github.event_name != 'schedule' }}
+      run: ./.github/actions/docker-cache/restore.sh ${{ runner.temp }}/docker_cache/cache.tar
 
     - name: Build App with Docker
       run: docker build . -t docker-cache-action-app:${GITHUB_SHA}
 
     - name: Backup docker
-      run: ./.github/backup.sh ${{ runner.temp }}/docker_cache/cache.tar
+      run: ./.github/actions/docker-cache/backup.sh ${{ runner.temp }}/docker_cache/cache.tar
