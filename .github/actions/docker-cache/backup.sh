@@ -10,8 +10,8 @@ function main {
   mkdir -p "$cache_dir"
   rm -f "$cache_tar"
 
-  time sudo service docker stop
-  time sudo /bin/tar -c -f "$cache_tar" -C /var/lib/docker .
+  command time -f "Took %E" sudo service docker stop
+  command time -f "Took %E" sudo /bin/tar -c -f "$cache_tar" -C /var/lib/docker .
   sudo chown "$USER:$(id -g -n "$USER")" "$cache_tar"
   ls -lh "$cache_tar"
 }
