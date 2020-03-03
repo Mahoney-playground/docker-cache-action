@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -exuo pipefail
+set -euo pipefail
 # shellcheck source=timing.sh
 . "${BASH_SOURCE%/*}/timing.sh"
 
