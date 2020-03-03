@@ -17,7 +17,7 @@ function main() {
     timing sudo service docker start
   else
     # Slim docker down - comes with 3GB of data we don't want to backup
-    docker system prune -a -f --volumes
+    timing docker system prune -a -f --volumes
   fi
 }
 
