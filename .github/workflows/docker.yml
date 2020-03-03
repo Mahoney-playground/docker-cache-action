@@ -24,19 +24,16 @@ jobs:
       env:
         cache-name: docker-cache-1
       with:
-        path: /tmp/docker_cache
+        path: ${{ runner.temp }}/docker_cache
         key: ${{ env.cache-name }}-${{ github.run_number }}
         restore-keys: |
           ${{ env.cache-name }}-
 
     - name: Restore docker
-      run: ./.github/restore.sh ${{ github.event_name }}
-      shell: bash
+      run: ./.github/restore.sh ${{ runner.temp }}/docker_cache/cache.tar ${{ github.event_name != 'schedule' }}
 
     - name: Build App with Docker
       run: docker build . -t docker-cache-action-app:${GITHUB_SHA}
-      shell: bash
 
     - name: Backup docker
-      run: ./.github/backup.sh
-      shell: bash
+      run: ./.github/backup.sh ${{ runner.temp }}/docker_cache/cache.tar
