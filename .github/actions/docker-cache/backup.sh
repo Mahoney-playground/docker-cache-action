@@ -4,7 +4,7 @@ set -euo pipefail
 # shellcheck source=timing.sh
 . "${BASH_SOURCE%/*}/timing.sh"
 
-function main {
+main() {
   local cache_tar=$1
   local cache_dir
   cache_dir=$(dirname "$cache_tar")
