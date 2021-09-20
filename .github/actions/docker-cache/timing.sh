@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-function timing() {
+timing() {
   command time -f "[$*] took %E" "$@"
 }
